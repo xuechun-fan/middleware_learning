@@ -22,6 +22,7 @@ public class Worker1 {
         channel.basicConsume(QUEUE_NAME, false, (tag, deliver) -> {
             System.out.println("【worker1 接收到消息】： " + new String(deliver
                     .getBody(), StandardCharsets.UTF_8));
+            channel.basicAck(deliver.getEnvelope().getDeliveryTag(), false);
         }, (a) -> {});
     }
 

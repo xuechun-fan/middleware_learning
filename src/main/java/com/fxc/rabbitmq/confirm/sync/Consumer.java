@@ -1,4 +1,4 @@
-package com.fxc.rabbitmq.simple;
+package com.fxc.rabbitmq.confirm.sync;
 
 import com.fxc.rabbitmq.utils.RabbitmqUtils;
 import com.rabbitmq.client.Channel;
@@ -10,22 +10,27 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
 
 /**
- * 消费者
+ * 同步确认模式
  *
  * @author FXC
  */
 public class Consumer {
 
+    /** 队列名称 */
+    public static final String QUEUE_NAME = "confirm";
+
     public static void main(String[] args) throws IOException, TimeoutException {
+
         Channel channel = RabbitmqUtils.getChannel();
         DeliverCallback deliverCallback = new DeliverCallback() {
             @Override
             public void handle(String consumerTag, Delivery message) throws IOException {
                 System.out.println("消费者收到消息：" + new String(message
-                        .getBody(), StandardCharsets.UTF_8));
+                                                                   .getBody(), StandardCharsets.UTF_8));
                 channel.basicAck(message.getEnvelope().getDeliveryTag(), false);
             }
         };
-        channel.basicConsume(RabbitmqUtils.QUEUE_NAME, false, deliverCallback, (a) -> { });
+        channel.basicConsume(QUEUE_NAME, false, deliverCallback, (a) -> { });
+
     }
 }

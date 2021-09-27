@@ -17,6 +17,8 @@ public class RabbitmqUtils {
     /** 队列名称 */
     public static final String QUEUE_NAME = "hello";
 
+
+
     /**
      * 获取rabbitmq链接channel
      *
@@ -26,10 +28,10 @@ public class RabbitmqUtils {
      */
     public static Channel getChannel() throws IOException, TimeoutException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("47.98.100.6");
-        connectionFactory.setVirtualHost("/seckill");
+        connectionFactory.setHost("127.0.0.1");
+        connectionFactory.setVirtualHost("/myHost");
         connectionFactory.setUsername("root");
-        connectionFactory.setPassword("971231Fan_");
+        connectionFactory.setPassword("123");
         Connection connection = connectionFactory.newConnection();
         return connection.createChannel();
     }
