@@ -21,7 +21,7 @@ public class DistributeServer {
     public static void main(String[] args) throws KeeperException, InterruptedException {
         DistributeServer server = new DistributeServer();
         // 1、获取zk连接
-        conn = ZkUtils.getConnect(watchedEvent -> {});
+        conn = ZkUtils.getConnect(watchedEvent -> {;});
 
         // 2、注册服务器到zk集群
         server.registry();
