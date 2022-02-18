@@ -10,7 +10,6 @@
     <modules>
         <module>amqp-producer</module>
         <module>amqp-consumer</module>
-        <module>zookeeper-learning</module>
     </modules>
     <name>springboot-rabbitmq-demo</name>
     <description>Demo project for Spring Boot</description>
